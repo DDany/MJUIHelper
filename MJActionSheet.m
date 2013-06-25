@@ -138,6 +138,12 @@ timeoutMessageFormat:@"(Dismissed in %lus)"];
     dispatch_resume(timer);
 }
 
+// add by Derek 2013.3.27
+- (void)setButtonHandler:(MJActionSheetButtonHandler)buttonHandler
+{
+    _buttonHandler = buttonHandler;
+    super.delegate = self; // 解决在外面设置buttonHandler却无法被调用到的问题
+}
 
 /////////////////////////////////////////////////////////////////////////////
 #pragma mark - Memory Mgmt
