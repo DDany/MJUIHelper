@@ -135,38 +135,6 @@
 }
 
 /////////////////////////////////////////////////////////////////////////////
-#pragma mark - Skin Mgmt
-
-- (void)layoutSubviews {
-    // Dany: Find background image and button, replace their image with customized images.
-    
-    if ( [[[MJSkin current] skinName] isEqualToString:@"black"] )
-    {
-        for (UIView *subView in self.subviews) {
-            if ([subView isKindOfClass:[UIImageView class]]) {
-                ((UIImageView *)subView).image = [[MJSkin current] imageNamed:@"AlertView/background_alert_bg"];
-            }
-            
-            if ([subView isKindOfClass:[UIButton class]]) {
-                NSString *cancelTitle = self.cancelButtonIndex >= 0 ? [self buttonTitleAtIndex:self.cancelButtonIndex] : @"";
-                
-                if ([((UIButton *)subView).titleLabel.text isEqualToString:cancelTitle]) {
-                    UIImage *image = [[MJSkin current] imageNamed:@"AlertView/button_alert_cancel_bg"];
-                    image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
-                    [((UIButton *)subView) setBackgroundImage:image forState:UIControlStateNormal];
-                    [((UIButton *)subView) setBackgroundImage:nil forState:UIControlStateHighlighted];
-                } else {
-                    UIImage *image = [[MJSkin current] imageNamed:@"AlertView/button_alert_bg"];
-                    image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
-                    [((UIButton *)subView) setBackgroundImage:image forState:UIControlStateNormal];
-                    [((UIButton *)subView) setBackgroundImage:nil forState:UIControlStateHighlighted];
-                }
-            }
-        }
-    }
-}
-
-/////////////////////////////////////////////////////////////////////////////
 #pragma mark - Memory Mgmt
 
 #if ! __has_feature(objc_arc)
